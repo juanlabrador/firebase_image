@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:firebase_image/firebase_image.dart';
 import 'package:firebase_image/src/image_object.dart';
 import 'package:path/path.dart';
@@ -150,8 +149,8 @@ class FirebaseImageCacheManager {
 
   Future<FirebaseImageObject> putFile(
       FirebaseImageObject object, final bytes) async {
-    String path = basePath + "/" + object.remotePath;
-    path = path.replaceAll("//", "/");
+    String path = '$basePath/${object.remotePath}';
+    path = path.replaceAll('//', '/');
     //print(join(basePath, object.remotePath)); Join isn't working?
     final localFile = await File(path).create(recursive: true);
     await localFile.writeAsBytes(bytes);

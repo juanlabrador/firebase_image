@@ -50,7 +50,7 @@ class FirebaseImage extends ImageProvider<FirebaseImage> {
         );
 
   /// Returns the image as bytes
-  Future<Uint8List> getBytes() {
+  Future<ImmutableBuffer> getBytes() {
     return _fetchImage();
   }
 
@@ -78,7 +78,7 @@ class FirebaseImage extends ImageProvider<FirebaseImage> {
     return storage.ref().child(_getImagePath(location));
   }
 
-  Future<Uint8List> _fetchImage() async {
+  Future<ImmutableBuffer> _fetchImage() async {
     Uint8List? bytes;
     FirebaseImageCacheManager cacheManager = FirebaseImageCacheManager(
       cacheRefreshStrategy,
@@ -101,12 +101,12 @@ class FirebaseImage extends ImageProvider<FirebaseImage> {
       bytes = await cacheManager.remoteFileBytes(_imageObject, maxSizeBytes);
     }
 
-    return bytes!;
+    return ImmutableBuffer.fromUint8List(bytes!);
   }
 
   Future<Codec> _fetchImageCodec() async {
-    return await PaintingBinding.instance!
-        .instantiateImageCodec(await _fetchImage());
+    return await PaintingBinding.instance
+        .instantiateImageCodecWithSize(await _fetchImage());
   }
 
   @override
@@ -131,7 +131,7 @@ class FirebaseImage extends ImageProvider<FirebaseImage> {
   }
 
   @override
-  int get hashCode => hashValues(_imageObject.uri, scale);
+  int get hashCode => Object.hash(_imageObject.uri, scale);
 
   @override
   String toString() => '$runtimeType("${_imageObject.uri}", scale: $scale)';
