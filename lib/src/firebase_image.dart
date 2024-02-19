@@ -114,8 +114,9 @@ class FirebaseImage extends ImageProvider<FirebaseImage> {
     return SynchronousFuture<FirebaseImage>(this);
   }
 
+
   @override
-  ImageStreamCompleter load(FirebaseImage key, DecoderCallback decode) {
+  ImageStreamCompleter loadImage(FirebaseImage key, ImageDecoderCallback decode) {
     return MultiFrameImageStreamCompleter(
       codec: key._fetchImageCodec(),
       scale: key.scale,
