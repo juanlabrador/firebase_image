@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 import 'dart:ui';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_image/firebase_image.dart';
 import 'package:firebase_image/src/cache_manager.dart';
