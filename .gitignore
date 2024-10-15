@@ -74,7 +74,10 @@ build/
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+/.fvm/flutter_sdk/
+/.fvm/fvm_config.json
 /.flutter-plugins-dependencies
+/.fvm/
 /.fvmrc
 
 # FVM Version Cache
